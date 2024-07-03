@@ -1,0 +1,26 @@
+<h4><b> Detalhes do clientes</b></h4>
+<form [formGroup]="clienteForm" class="w-full" (ngSubmit)="onSubmit()" novalidate>
+  <div class="mb-5">
+    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+    <input type="text" id="name" class="form-control" placeholder="Name" formControlName="name">
+    @if (clienteForm.get('name')?.hasError('required') && clienteForm.get('name')?.touched) {
+    <div class="form-error">Necessario o nome do cliente</div>
+    }
+  </div>
+  <div class="mb-5">
+    <mat-radio-group aria-label="Select an option" formControlName="tipoEmpresa">
+      <label><b>Tipo Empresa</b></label>
+      <br>
+      <mat-radio-button  value="1"><b>Pequeno</b> </mat-radio-button>
+      <mat-radio-button value="2"><b>Medio</b> </mat-radio-button>
+      <mat-radio-button value="3"><b>Grande</b></mat-radio-button>
+  </mat-radio-group>
+  @if (clienteForm.get('tipoEmpresa')?.hasError('required') && clienteForm.get('tipoEmpresa')?.touched) {
+    <div class="form-error">Necessario marcar o Tipo Empresa</div>
+    }
+  </div>
+  <button type="submit"
+    class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">Adicionar</button>
+  <button type="button" (click)="onClose()"
+    class="text-white  ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">Cancelar</button>
+</form>
